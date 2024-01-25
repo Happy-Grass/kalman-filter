@@ -32,7 +32,7 @@ int main() {
         kf.predict();
 
         // 更新
-        Eigen::VectorXd measurement(measurements[i]);
+        const Eigen::VectorXd measurement(measurements[i]);
         kf.update(measurement);
 
         // 获取估计的位置
