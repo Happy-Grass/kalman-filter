@@ -23,14 +23,16 @@ int main() {
     kf.initialize(x0, P0, A, H, Q, R);
 
     // 模拟一些测量
-    std::vector<double> measurements = {1.1, 2.0, 3.1, 4.0, 5.2};
+    double measurements[] = {1.1, 2.0, 3.1, 4.0, 5.2};
+    size_t num_measurements = sizeof(measurements) / sizeof(measurements[0]);
 
     // 使用卡尔曼滤波器进行状态估计
-    for (const auto& measurement : measurements) {
+    for (size_t i = 0; i < num_measurements; ++i) {
         // 预测
         kf.predict();
 
         // 更新
+        double measurement = measurements[i];
         kf.update(Eigen::VectorXd(1) << measurement);
 
         // 获取估计的位置
