@@ -32,8 +32,8 @@ int main() {
         kf.predict();
 
         // 更新
-        double measurement = measurements[i];
-        kf.update(Eigen::VectorXd(1) << measurement);
+        Eigen::VectorXd measurement(measurements[i]);
+        kf.update(measurement);
 
         // 获取估计的位置
         Eigen::VectorXd estimated_state = kf.getState();
